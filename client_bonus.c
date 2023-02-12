@@ -6,13 +6,13 @@
 /*   By: rrasezin <rrasezin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 23:22:25 by rrasezin          #+#    #+#             */
-/*   Updated: 2023/02/12 15:50:27 by rrasezin         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:37:30 by rrasezin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static int send_message(char *message, pid_t pid)
+static int	send_message(char *message, pid_t pid)
 {
 	int		i;
 	int		j;
@@ -34,29 +34,31 @@ static int send_message(char *message, pid_t pid)
 			usleep(200);
 		}
 		if (message[i] == '\0')
-			break;
+			break ;
 	}
 	return (0);
 }
 
-static	void handler(int signum, siginfo_t *info, void *context)
+static void	handler(int signum, siginfo_t *info, void *context)
 {
+	(void)info;
+	(void)context;
 	if (signum == SIGUSR2)
 	{
 		write (1, "\n  \033[1m\033[32:5:5m[SUCCESSE]  message reseved.\n\n", 46);
 		exit (0);
 	}
-} 
+}
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	pid_t	s_pid;
-	int		error;
-    struct sigaction	sa;
+	pid_t				s_pid;
+	int					error;
+	struct sigaction	sa;
 
 	sa.sa_sigaction = handler;
 	sigemptyset(&sa.sa_mask);
-    sa.sa_flags = SA_SIGINFO;
+	sa.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR2, &sa, NULL);
 	error = check_errors(argc, argv, &s_pid);
 	if (error == 1)

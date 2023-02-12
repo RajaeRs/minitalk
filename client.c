@@ -6,13 +6,13 @@
 /*   By: rrasezin <rrasezin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:13:14 by rrasezin          #+#    #+#             */
-/*   Updated: 2023/02/12 15:58:38 by rrasezin         ###   ########.fr       */
+/*   Updated: 2023/02/12 22:38:19 by rrasezin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static int send_message(char *message, pid_t pid)
+static int	send_message(char *message, pid_t pid)
 {
 	int		i;
 	int		j;
@@ -38,7 +38,8 @@ static int send_message(char *message, pid_t pid)
 	}
 	return (0);
 }
-int		main(int argc, char **argv)
+
+int	main(int argc, char **argv)
 {
 	pid_t	s_pid;
 	int		error;
@@ -48,7 +49,8 @@ int		main(int argc, char **argv)
 		exit (1);
 	if (send_message(argv[2], s_pid) == 1)
 	{
-		write (2, "\n  \033[1m\033[31:5:5m[x]  The message not sand, check the pid.\n\n", 60);
+		write (2, "\n  \033[1m\033[31:5:5m[x]  The message not sand,", 43);
+		write (2, " check the pid.\n\n", 17);
 		exit (1);
 	}
 }

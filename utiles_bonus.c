@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utiles.c                                           :+:      :+:    :+:   */
+/*   utiles_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrasezin <rrasezin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 19:01:25 by rrasezin          #+#    #+#             */
-/*   Updated: 2023/02/12 22:40:44 by rrasezin         ###   ########.fr       */
+/*   Created: 2023/02/12 17:23:21 by rrasezin          #+#    #+#             */
+/*   Updated: 2023/02/12 22:40:27 by rrasezin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,19 @@ int	ft_pow(int base, int power)
 		result = result * base;
 	}
 	return (result);
+}
+
+void	ft_bzero(void *src, size_t len)
+{
+	unsigned char	*dest;
+
+	dest = (unsigned char *)src;
+	while (len)
+	{
+		*dest = 0;
+		dest++;
+		len--;
+	}
 }
 
 void	ft_putnbr(int n)
